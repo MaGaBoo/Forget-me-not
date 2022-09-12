@@ -1,0 +1,49 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard"
+    ],
+    "globals": {
+        "document": true
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "overrides": [
+        {
+            "files": ["*.js","*.jsx"]
+        }
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "indent": 0,
+        "react/prop-types": 0,
+        "arrow-body-style": 0,
+        "react/no-array-index-key": 0,
+        "react/function-component-definition": 0,
+        "import/prefer-default-export": 0,
+        "no-unused-vars": 1,
+        "quotes": 0,
+        "no-extra-semi": 0,
+        "comma-dangle": 0,
+        "semi": 0,
+        "no-trailing-spaces": 0
+        
+    }
+}
+

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ob 1.0.0 | Documentation</title>
+    <meta name="description" content="Final project React I OB" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="assets/bass.css" rel="stylesheet" />
+    <link href="assets/style.css" rel="stylesheet" />
+    <link href="assets/github.css" rel="stylesheet" />
+    <link href="assets/split.css" rel="stylesheet" />
+  </head>
+  <body class="documentation m0">
+    <div class="flex">
+      <div id="split-left" class="overflow-auto fs0 height-viewport-100">
+        <div class="py1 px2">
+          <h3 class="mb0 no-anchor">ob</h3>
+          <div class="mb1"><code>1.0.0</code></div>
+          <input
+            placeholder="Filter"
+            id="filter-input"
+            class="col12 block input"
+            spellcheck="false"
+            autocapitalize="off"
+            autocorrect="off"
+            type="text"
+          />
+          <div id="toc">
+            <ul class="list-reset h5 py1-ul">
+              <li><a href="#tasklist" class=""> TaskList </a></li>
+
+              <li><a href="#addnewtask" class=""> addNewTask </a></li>
+
+              <li><a href="#istasksempty" class=""> isTasksEmpty </a></li>
+
+              <li><a href="#editnewitem" class=""> editNewItem </a></li>
+
+              <li><a href="#removetask" class=""> removeTask </a></li>
+
+              <li>
+                <a href="#insertnewitemwithenterkey" class="">
+                  insertNewItemWithEnterKey
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="mt1 h6 quiet">
+            <a href="https://documentation.js.org/reading-documentation.html"
+              >Need help reading this?</a
+            >
+          </div>
+        </div>
+      </div>
+      <div id="split-right" class="relative overflow-auto height-viewport-100">
+        <section class="p2 mb2 clearfix bg-white minishadow">
+          <div class="clearfix">
+            <h3 class="fl m0" id="tasklist">TaskList</h3>
+          </div>
+
+          <p>Component to manage Task List</p>
+
+          <div class="pre p1 fill-light mt0">TaskList</div>
+
+          <div class="py1 quiet mt1 prose-big">Returns</div>
+          <code>React.Component</code>:
+        </section>
+
+        <section class="p2 mb2 clearfix bg-white minishadow">
+          <div class="clearfix">
+            <h3 class="fl m0" id="addnewtask">addNewTask</h3>
+          </div>
+
+          <p>Add new task to Task List</p>
+
+          <div class="pre p1 fill-light mt0">addNewTask</div>
+        </section>
+
+        <section class="p2 mb2 clearfix bg-white minishadow">
+          <div class="clearfix">
+            <h3 class="fl m0" id="istasksempty">isTasksEmpty</h3>
+          </div>
+
+          <p>Function to check if Task List is empty</p>
+
+          <div class="pre p1 fill-light mt0">isTasksEmpty</div>
+
+          <div class="py1 quiet mt1 prose-big">Returns</div>
+          <code>any</code>: true if tasklist.length === 0
+        </section>
+
+        <section class="p2 mb2 clearfix bg-white minishadow">
+          <div class="clearfix">
+            <h3 class="fl m0" id="editnewitem">editNewItem</h3>
+          </div>
+
+          <p>Edit new task</p>
+
+          <div class="pre p1 fill-light mt0">editNewItem</div>
+
+          <div class="py1 quiet mt1 prose-big">Parameters</div>
+          <div class="prose">
+            <div class="space-bottom0">
+              <div>
+                <span class="code bold">e</span>
+                <code class="quiet">(any)</code>
+                OnChange Event
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="p2 mb2 clearfix bg-white minishadow">
+          <div class="clearfix">
+            <h3 class="fl m0" id="removetask">removeTask</h3>
+          </div>
+
+          <p>Function to remove a task from the list</p>
+
+          <div class="pre p1 fill-light mt0">removeTask</div>
+
+          <div class="py1 quiet mt1 prose-big">Parameters</div>
+          <div class="prose">
+            <div class="space-bottom0">
+              <div>
+                <span class="code bold">index</span>
+                <code class="quiet">(any)</code>
+                Index of task to remove
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="p2 mb2 clearfix bg-white minishadow">
+          <div class="clearfix">
+            <h3 class="fl m0" id="insertnewitemwithenterkey">
+              insertNewItemWithEnterKey
+            </h3>
+          </div>
+
+          <p>Add new item to Check List when Enter key is pressed</p>
+
+          <div class="pre p1 fill-light mt0">insertNewItemWithEnterKey</div>
+
+          <div class="py1 quiet mt1 prose-big">Parameters</div>
+          <div class="prose">
+            <div class="space-bottom0">
+              <div>
+                <span class="code bold">e</span>
+                <code class="quiet">(any)</code>
+                Default onKeyDown event
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="assets/anchor.js"></script>
+    <script src="assets/split.js"></script>
+    <script src="assets/site.js"></script>
+  </body>
+</html>
