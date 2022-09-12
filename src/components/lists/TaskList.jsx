@@ -1,6 +1,7 @@
 /* eslint-disable multiline-ternary */
 /* eslint-disable no-import-assign */
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 /**
  * Component to manage Task List
@@ -8,7 +9,7 @@ import React, { useState } from "react";
  * @returns {React.Component}
  */
 
-const TaskList = () => {
+const TaskList = ({ showSettings, setShowSettings }) => {
   /* const tasks = useList([]); */
 
   const [newTask, setNewTask] = useState("");
@@ -20,6 +21,7 @@ const TaskList = () => {
    */
 
   const addNewTask = () => {
+    if (newTask === "") return;
     setTaskList([...taskList, { task: newTask, completed: false }]);
     setNewTask("");
   };
@@ -62,43 +64,66 @@ const TaskList = () => {
   };
 
   return (
-    <div className="container-md">
-      <h1 className="text-3xl text-sky-700">Task List</h1>
-      <div className="input-container mb-3">
-        <input
-          className="input me-3"
-          value={newTask}
-          onKeyDown={insertNewItemWithEnterKey}
-          onChange={editNewItem}
-          placeholder="New task"
-          type="text"
-        ></input>
+    <>
+      <header className="flex justify-between m-4">
+        <h1 
+        className="text-3xl text-pink-900 font-semibold dark:text-pink-400 mb-2"
+        style={{ fontFamily: "Satisfy", fontSize: "3rem" }}
+        >
+          Forget-me-not
+        </h1>
+        <motion.button 
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="main-btn"
+          onClick={() => setShowSettings(!showSettings)}
+        >
+          {!showSettings ? "Show settings" : "Hide settings"}
+        </motion.button>
+      </header>
+      <div className="container my-5 ml-5">
+        <div>
+          <input
+            className="shadow py-2 px-2 rounded-lg outline-non transition-all duration-300 focus:ring-2 mr-2 dark:bg-neutral-700"
+            value={newTask}
+            onKeyDown={insertNewItemWithEnterKey}
+            onChange={editNewItem}
+            placeholder="New task"
+            type="text"
+          ></input>
 
-        <button className="btn btn-success" onClick={addNewTask}>
-          Create task
-        </button>
+          <button className="main-btn" onClick={addNewTask}>
+            Create task
+          </button>
+        </div>
+
+        {isTasksEmpty() ? (
+          <p className="py-3">No task list yet!</p>
+        ) : (
+          <ul>
+            {taskList.map((item, index) => (
+              <li className="mt-2" key={index}>
+                <input
+                  style={{ textDecoration: "line-through" }}
+                  className="me-2 checked:bg-pink-500"
+                  type="checkbox"
+                  onClick={() => onToggleCompleteItem(index)}
+                  onChange={() => {}}
+                  checked={item.completed}
+                />
+                <span
+                  className={`ml-2 text-gray-800 dark:text-gray-100 text-sm italic ${
+                    item.completed && "line-through"
+                  }`}
+                >
+                  {item.task}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-
-      {isTasksEmpty() ? (
-        <p>No task list yet!</p>
-      ) : (
-        <ul>
-          {taskList.map((item, index) => (
-            <li className="list-group-item" key={index}>
-              <input
-                style={{ textDecoration: "line-through" }}
-                className="form-check-input me-2"
-                type="checkbox"
-                onClick={() => onToggleCompleteItem(index)}
-                onChange={() => {}}
-                checked={item.completed}
-              />
-              {item.task}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    </>
   );
 };
 
