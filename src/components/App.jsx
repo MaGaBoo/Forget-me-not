@@ -13,7 +13,12 @@ const App = () => {
    */
 
   useEffect(() => {
-    setDark(false);
+    try {
+      const config = JSON.parse(localStorage.getItem("config"));
+      setDark(config.theme);
+    } catch (error) {
+
+    }
   }, []);
 
   /**
@@ -42,9 +47,9 @@ const App = () => {
           >
             {showSettings && (
               <motion.div
-              initial={{ y: "100vh" }}
-              animate={{ y: "0" }}
-              exit={{ y: "100vh" }}
+                initial={{ y: "100vh" }}
+                animate={{ y: "0" }}
+                exit={{ y: "100vh" }}
               >
                 <Settings toggleDark={toggleDark} />
               </motion.div>
