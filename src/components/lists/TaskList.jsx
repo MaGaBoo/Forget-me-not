@@ -66,13 +66,13 @@ const TaskList = ({ showSettings, setShowSettings }) => {
   return (
     <>
       <header className="flex justify-between m-4">
-        <h1 
-        className="text-3xl text-pink-900 font-semibold dark:text-pink-400 mb-2"
-        style={{ fontFamily: "Satisfy", fontSize: "3rem" }}
+        <h1
+          className="text-3xl text-pink-900 font-semibold dark:text-pink-400 mb-2"
+          style={{ fontFamily: "Satisfy", fontSize: "3rem" }}
         >
           Forget-me-not
         </h1>
-        <motion.button 
+        <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           className="main-btn"
@@ -102,23 +102,25 @@ const TaskList = ({ showSettings, setShowSettings }) => {
         ) : (
           <ul>
             {taskList.map((item, index) => (
-              <li className="mt-2" key={index}>
-                <input
-                  style={{ textDecoration: "line-through" }}
-                  className="me-2 checked:bg-pink-500"
-                  type="checkbox"
-                  onClick={() => onToggleCompleteItem(index)}
-                  onChange={() => {}}
-                  checked={item.completed}
-                />
-                <span
-                  className={`ml-2 text-gray-800 dark:text-gray-100 text-sm italic ${
-                    item.completed && "line-through"
-                  }`}
-                >
-                  {item.task}
-                </span>
-              </li>
+              <motion.li initial={{ x: '100vw' }} animate={{ x: 0 }} className="mt-2" key={index}>
+                <label> {/* this label allows to mark task as completed by clicking on text as well */}
+                  <input
+                    style={{ textDecoration: "line-through" }}
+                    className="me-2 checked:bg-pink-500"
+                    type="checkbox"
+                    onClick={() => onToggleCompleteItem(index)}
+                    onChange={() => {}}
+                    checked={item.completed}
+                  />
+                  <span
+                    className={`ml-2 text-gray-800 dark:text-gray-100 text-sm italic ${
+                      item.completed && "line-through"
+                    }`}
+                  >
+                    {item.task}
+                  </span>
+                </label>
+              </motion.li>
             ))}
           </ul>
         )}
