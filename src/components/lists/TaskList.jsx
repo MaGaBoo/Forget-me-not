@@ -70,7 +70,7 @@ const TaskList = ({ showSettings, setShowSettings }) => {
           className="text-3xl text-pink-900 font-semibold dark:text-pink-400 mb-2"
           style={{ fontFamily: "Satisfy", fontSize: "3rem" }}
         >
-          Forget-me-not
+          Forget-me-not v2
         </h1>
         <motion.button
           whileHover={{ scale: 1.1 }}
