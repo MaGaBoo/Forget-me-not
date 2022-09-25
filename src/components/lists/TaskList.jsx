@@ -1,7 +1,12 @@
 /* eslint-disable multiline-ternary */
 /* eslint-disable no-import-assign */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import {
+  addTask,
+  getTasks,
+  toggleComplete,
+} from "../../firebase/taskController";
 
 /**
  * Component to manage Task List
@@ -15,15 +20,28 @@ const TaskList = ({ showSettings, setShowSettings }) => {
   const [newTask, setNewTask] = useState("");
   const [taskList, setTaskList] = useState([]);
 
+  useEffect(() => {
+    getTasks()
+      .then((tasks) => setTaskList([...tasks]))
+      .catch((e) => console.error(e));
+  }, []);
+
   /**
    * Add new task to Task List
    * v2: new task is object type to be completed
    */
 
   const addNewTask = () => {
-    if (newTask === "") return;
-    setTaskList([...taskList, { task: newTask, completed: false }]);
-    setNewTask("");
+    if (newTask === "");
+
+    // Adding new task to db
+    const task = { task: newTask, completed: false };
+    addTask(task).then(() => {
+      // Once added, render in tasklist state
+      return setTaskList([...taskList, task])
+        .catch((e) => console.error(e))
+        .finally(() => setNewTask(""));
+    });
   };
 
   /**
@@ -57,10 +75,20 @@ const TaskList = ({ showSettings, setShowSettings }) => {
 
   const insertNewItemWithEnterKey = (e) => e.key === "Enter" && addNewTask();
 
+  // Update new task state on db
+  //  Once updated, renders all task in tasklist state
+
   const onToggleCompleteItem = (index) => {
-    const newTaskList = taskList;
-    newTaskList[index].completed = !newTaskList[index].completed;
-    setTaskList([...newTaskList]);
+    const task = taskList.find((t) => t.id === index);
+    // Update task state on db
+    toggleComplete(task)
+      .then(async () => {
+        const newTaskList = await getTasks(); // new call to db to get tasks again
+        return setTaskList([
+          ...newTaskList,
+        ]);
+      })
+      .catch((e) => console.error(e));
   };
 
   return (
@@ -102,13 +130,20 @@ const TaskList = ({ showSettings, setShowSettings }) => {
         ) : (
           <ul>
             {taskList.map((item, index) => (
-              <motion.li initial={{ x: '100vw' }} animate={{ x: 0 }} className="mt-2" key={index}>
-                <label> {/* this label allows to mark task as completed by clicking on text as well */}
+              <motion.li
+                initial={{ x: "100vw" }}
+                animate={{ x: 0 }}
+                className="mt-2"
+                key={index}
+              >
+                <label className="cursor-pointer">
+                  {" "}
+                  {/* this label allows to mark task as completed by clicking on text as well */}
                   <input
                     style={{ textDecoration: "line-through" }}
                     className="me-2 checked:bg-pink-500"
                     type="checkbox"
-                    onClick={() => onToggleCompleteItem(index)}
+                    onClick={() => onToggleCompleteItem(item.id)}
                     onChange={() => {}}
                     checked={item.completed}
                   />
